@@ -16,64 +16,57 @@ html {
   @include main-font;
   line-height: 1.5rem;
   color: $color-base;
-  background: #fff;
 }
 
 a {
   color: $color-base;
 }
 
-.result-status {
-  margin-top: 1rem;
-  > * {
-    margin-bottom: 1rem;
-  }
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
   width: 90%;
   max-width: 600px;
   margin: 0 auto;
-  margin-top: 5vh;
+}
+
+.result-status {
+  flex: 1;
+  padding-top: 2rem;
+  cursor: pointer;
+
+  &.result-status--loading {
+    cursor: initial;
+  }
+
+  &> * {
+    margin-bottom: 1rem;
+  }
 }
 
 .intro {
   font-size: 1.1rem;
   line-height: 1.75rem;
-  margin-bottom: 2.5rem;
+  padding: 2rem 0;
+  background: #f7f7f7;
 }
 
 .file-picker {
   visibility: hidden;
 }
 
-button {
-  @include main-font;
-  color: white;
-  padding: 0.75rem 1.4rem;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 0 10px rgba(#000, .15);
-  background: #32977B;
-  cursor: pointer;
-  transition: all .3s ease;
-
-  &:active {
-    box-shadow: none;
-  }
-
-  &:focus {
-    outline: none;
-  }
-
-  &[disabled] {
-    background: #d8d8d8;
-    box-shadow: none;
-  }
+.image-container {
+  position: relative;
 }
 
-.image {
-  width: 100%;
+.image-container__canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 table {
