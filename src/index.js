@@ -3,18 +3,14 @@ import ReactDOM from 'react-dom';
 import objectDetector from '@cloud-annotations/object-detection';
 import './main.scss';
 
-const STATUS_MESSAGES = {
-  idle: 'Enter a whiteboard sketch using the file picker.',
-  loading: 'Loading...',
-  noResults: 'No components detected. Please try again or check the console for the raw output.'
-};
-
 function App() {
   const reader = useMemo(() => new FileReader(), []);
   const imageRef = useRef();
-  const [image, setImage] = useState('');
+  const filePickerRef = useRef();
 
-  const [status, setStatus] = useState(STATUS_MESSAGES.idle);
+  const [image, setImage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState('');
   const [results, setResults] = useState([]);
 
   const handleImageChange = useCallback(({target: {files: [selectedFile]}}) =>
@@ -25,34 +21,40 @@ function App() {
   useEffect(() => {
     reader.addEventListener('load', async ({target: {result: src}}) => {
       setImage(src);
-      setStatus(STATUS_MESSAGES.loading);
+
+      setStatus('Loading...');
+      setLoading(true);
       setResults([]);
 
       const results = await detectObjectsInImage(imageRef.current);
       console.log(results);
 
       if (results.length > 0) {
-        setStatus(STATUS_MESSAGES.idle);
+        setStatus('');
         setResults(results);
       } else {
-        setStatus(STATUS_MESSAGES.noResults);
+        setStatus('No components detected. Please try again or check the console for the raw output.');
       }
+
+      setLoading(false);
     });
   }, [reader]);
+
+  const handleGetStartedClick = useCallback(() => filePickerRef.current.click(), []);
 
   const resultsTable = results.length > 0 && (
     <table border="1">
       <thead>
         <tr>
-          <th>Class</th>
-          <th>Score</th>
+          <th>Component</th>
+          <th>Confidence</th>
         </tr>
       </thead>
       <tbody>
         {results.map(({class: label, score}, index) => (
           <tr key={`${label}${score}${index}`}>
             <td>{label}</td>
-            <td>{score}</td>
+            <td>{score * 100}%</td>
           </tr>
         ))}
       </tbody>
@@ -61,13 +63,14 @@ function App() {
 
   return (
     <main className="container">
-      <p>{status}</p>
-      <input type="file" onChange={handleImageChange} />
-      {resultsTable}
-      <img className="image" src={image} ref={imageRef} alt="" />
-      <p className="subdued">
-        Not sure what to sketch? Have a look at the <a href="https://github.com/kvendrik/polaris-ml/tree/master/training-data" target="_blank" rel="noopener noreferrer">training data (examples)</a>.
-      </p>
+      <p className="intro">This <a href="https://github.com/kvendrik/polaris-ml" target="_blank" rel="noopener noreferrer">experiment</a> allows you to upload a <a href="https://github.com/kvendrik/polaris-ml/tree/master/training-data" target="_blank" rel="noopener noreferrer">wireframe you sketched out</a> on a whiteboard and will tell you what <a href="https://polaris.shopify.com/components" target="_blank" rel="noopener noreferrer">Polaris components</a> you drew.</p>
+      <button onClick={handleGetStartedClick} disabled={loading}>Upload a drawing</button>
+      <input className="file-picker" ref={filePickerRef} type="file" onChange={handleImageChange} />
+      <div className="result-status">
+        <p>{status}</p>
+        {resultsTable}
+        <img className="image" src={image} ref={imageRef} alt="" />
+      </div>
     </main>
   );
 }

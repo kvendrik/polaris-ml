@@ -1,4 +1,8 @@
-$color-base: #000;
+$color-base: #07060B;
+
+@mixin main-font {
+  font: 400 16px 'Open Sans', sans-serif;
+}
 
 * {
   margin: 0;
@@ -9,31 +13,62 @@ $color-base: #000;
 }
 
 html {
-  font: 400 16px 'Open Sans', sans-serif;
+  @include main-font;
   line-height: 1.5rem;
+  color: $color-base;
+  background: #fff;
+}
+
+a {
   color: $color-base;
 }
 
-.container {
-  width: 95%;
-  max-width: 600px;
-  margin: 0 auto;
-  margin-top: 10vh;
-
-  * {
+.result-status {
+  margin-top: 1rem;
+  > * {
     margin-bottom: 1rem;
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 }
 
-.subdued {
-  opacity: 0.8;
-  font-size: .9rem;
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 5vh;
+}
 
-  a {
-    color: $color-base;
+.intro {
+  font-size: 1.1rem;
+  line-height: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.file-picker {
+  visibility: hidden;
+}
+
+button {
+  @include main-font;
+  color: white;
+  padding: 0.75rem 1.4rem;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(#000, .15);
+  background: #32977B;
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &[disabled] {
+    background: #d8d8d8;
+    box-shadow: none;
   }
 }
 
