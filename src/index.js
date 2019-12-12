@@ -73,7 +73,7 @@ function App() {
 }
 
 async function detectObjectsInImage(imageNode) {
-  const model = await objectDetector.load('/model');
+  const model = await objectDetector.load('model');
   return model.detect(imageNode);
 }
 
