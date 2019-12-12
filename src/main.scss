@@ -1,0 +1,52 @@
+$color-base: #000;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font: 400 16px 'Open Sans', sans-serif;
+  line-height: 1.5rem;
+  color: $color-base;
+}
+
+.container {
+  width: 95%;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 10vh;
+
+  * {
+    margin-bottom: 1rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.subdued {
+  opacity: 0.8;
+  font-size: .9rem;
+
+  a {
+    color: $color-base;
+  }
+}
+
+.image {
+  width: 100%;
+}
+
+table {
+  font-size: .9rem;
+  border-collapse: collapse;
+
+  td, th {
+    text-align: left;
+    padding: 0.5rem .75rem;
+  }
+}
