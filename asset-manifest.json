@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.js": "/polaris-ml/static/js/main.65d96aab.chunk.js",
-    "main.js.map": "/polaris-ml/static/js/main.65d96aab.chunk.js.map",
+    "main.css": "/polaris-ml/static/css/main.4655964b.chunk.css",
+    "main.js": "/polaris-ml/static/js/main.83f2aa3b.chunk.js",
+    "main.js.map": "/polaris-ml/static/js/main.83f2aa3b.chunk.js.map",
     "runtime-main.js": "/polaris-ml/static/js/runtime-main.ec14345f.js",
     "runtime-main.js.map": "/polaris-ml/static/js/runtime-main.ec14345f.js.map",
-    "static/js/2.bd76062d.chunk.js": "/polaris-ml/static/js/2.bd76062d.chunk.js",
-    "static/js/2.bd76062d.chunk.js.map": "/polaris-ml/static/js/2.bd76062d.chunk.js.map",
+    "static/js/2.eb6f5637.chunk.js": "/polaris-ml/static/js/2.eb6f5637.chunk.js",
+    "static/js/2.eb6f5637.chunk.js.map": "/polaris-ml/static/js/2.eb6f5637.chunk.js.map",
     "index.html": "/polaris-ml/index.html",
-    "precache-manifest.b4167bcfd29ed9b72ef211d97795d801.js": "/polaris-ml/precache-manifest.b4167bcfd29ed9b72ef211d97795d801.js",
+    "precache-manifest.8b33e3cc74c3abe28ff7375d6203457a.js": "/polaris-ml/precache-manifest.8b33e3cc74c3abe28ff7375d6203457a.js",
     "service-worker.js": "/polaris-ml/service-worker.js",
-    "static/js/2.bd76062d.chunk.js.LICENSE": "/polaris-ml/static/js/2.bd76062d.chunk.js.LICENSE"
+    "static/css/main.4655964b.chunk.css.map": "/polaris-ml/static/css/main.4655964b.chunk.css.map",
+    "static/js/2.eb6f5637.chunk.js.LICENSE": "/polaris-ml/static/js/2.eb6f5637.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.ec14345f.js",
-    "static/js/2.bd76062d.chunk.js",
-    "static/js/main.65d96aab.chunk.js"
+    "static/js/2.eb6f5637.chunk.js",
+    "static/css/main.4655964b.chunk.css",
+    "static/js/main.83f2aa3b.chunk.js"
   ]
 }
