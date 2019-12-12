@@ -1,80 +1,105 @@
-$color-base: #07060B;
+.control-board {
+  $color-base: #07060B;
 
-@mixin main-font {
-  font: 400 16px 'Open Sans', sans-serif;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-html {
-  @include main-font;
-  line-height: 1.5rem;
-  color: $color-base;
-}
-
-a {
-  color: $color-base;
-}
-
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.container {
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.result-status {
-  flex: 1;
-  padding-top: 2rem;
-  cursor: pointer;
-
-  &.result-status--loading {
-    cursor: initial;
+  @mixin main-font {
+    font: 400 16px 'Open Sans', sans-serif;
   }
 
-  &> * {
-    margin-bottom: 1rem;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-}
 
-.intro {
-  font-size: 1.1rem;
-  line-height: 1.75rem;
-  padding: 2rem 0;
-  background: #f7f7f7;
-}
+  html {
+    color: $color-base;
+  }
 
-.file-picker {
-  visibility: hidden;
-}
+  a {
+    color: $color-base;
+  }
 
-.image-container {
-  position: relative;
-}
+  .container {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    @include main-font;
+    line-height: 1.5em;
+  }
 
-.image-container__canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+  .result-status {
+    padding-top: 4rem;
+    overflow: hidden;
 
-table {
-  font-size: .9rem;
-  border-collapse: collapse;
+    &> * {
+      margin-bottom: 1rem;
+    }
+  }
 
-  td, th {
-    text-align: left;
-    padding: 0.5rem .75rem;
+  .intro {
+    padding-top: 2rem;
+    opacity: .75;
+
+    .container {
+      font-size: 0.95em;
+      line-height: 1.75em;
+    }
+  }
+
+  .status {
+    padding: 1rem 1.75rem;
+    text-decoration: none;
+    border: solid 2px;
+    margin-bottom: 0.5em;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      opacity: 0.8;
+    }
+  }
+
+  .file-picker {
+    visibility: hidden;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-container__canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .subdued {
+    color: #777;
+    font-size: .85em;
+  }
+
+  &+ hr {
+    border: none;
+    border-top: 1px solid #d8d8d8;
+  }
+
+  button {
+    @include main-font;
+    font-size: inherit;
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &[disabled] {
+      cursor: initial;
+    }
   }
 }

@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import objectDetector from '@cloud-annotations/object-detection';
+import Prototype from './Prototype';
 import './main.scss';
 
 function App() {
@@ -10,9 +11,17 @@ function App() {
   const canvasRef = useRef();
 
   const [image, setImage] = useState('');
-  const [status, setStatus] = useState('Click anywhere to begin');
+  const [status, setStatus] = useState('Click here to begin');
   const [results, setResults] = useState([]);
   const isLoading = status === 'Loading...';
+
+  const canvasSizes = useMemo(() => {
+    const canvasWidth = (window.innerWidth < 600 ? window.innerWidth : 600) - (3*16);
+    return {
+      width: canvasWidth,
+      height: canvasWidth - 100,
+    };
+  }, [window.innerWidth]);
 
   const handleImageChange = useCallback(({target: {files: [selectedFile]}}) => {
     if (!selectedFile) {
@@ -21,26 +30,12 @@ function App() {
     reader.readAsDataURL(selectedFile);
   }, [reader]);
 
-  useEffect(() => {
-    reader.addEventListener('load', async ({target: {result: src}}) => {
-      setImage(src);
-      clearCanvas(canvasRef.current);
+  useEffect(
+    () => reader.addEventListener('load', ({target: {result: src}}) => detectOnImagePath(src)),
+    [reader]
+  );
 
-      setStatus('Loading...');
-      setResults([]);
-
-      const results = await detectObjectsInImage(imageRef.current);
-      console.log(results);
-
-      if (results.length > 0) {
-        setStatus('Click anywhere to go again');
-        drawResultBoxes(canvasRef.current, results);
-        setResults(results);
-      } else {
-        setStatus('No components detected. Please try again or check the console for the raw output.');
-      }
-    });
-  }, [reader]);
+  const handleShowExampleClick = useCallback(() => detectOnImagePath('wireframe-example.jpg'), []);
 
   const openFilePicker = useCallback(() => {
     if (isLoading) {
@@ -49,24 +44,60 @@ function App() {
     filePickerRef.current.click();
   }, [isLoading]);
 
-  const resultStatusClassName = `result-status container ${isLoading ? 'result-status--loading' : ''}`;
+  const detectOnImagePath = useCallback(async (src) => {
+    if (isLoading) {
+      return;
+    }
+
+    setImage(src);
+    clearCanvas(canvasRef.current);
+
+    setStatus('Loading...');
+    setResults([]);
+
+    const results = await detectObjectsInImage(imageRef.current);
+    console.log(results);
+
+    if (results.length > 0) {
+      setStatus('Click here to go again');
+      drawResultBoxes(canvasRef.current, results);
+      setResults(results);
+    } else {
+      setStatus('No components detected. Please try again or check the console for the raw output.');
+    }
+  }, [isLoading, canvasRef, imageRef]);
+
+  const componentNames = results.map(({class: label}) => label);
+  console.log(componentNames);
 
   return (
-    <main className="page-wrapper">
-      <section className="intro">
-        <p className="container">
-          This <a href="https://github.com/kvendrik/polaris-ml" target="_blank" rel="noopener noreferrer">experiment</a> allows you to upload a <a href="https://github.com/kvendrik/polaris-ml/tree/master/training-data" target="_blank" rel="noopener noreferrer">wireframe you sketched out</a> on a whiteboard and will tell you what <a href="https://polaris.shopify.com/components" target="_blank" rel="noopener noreferrer">Polaris components</a> you drew.
-        </p>
-      </section>
-      <section className={resultStatusClassName} onClick={openFilePicker}>
-        <p>{status}</p>
-        <div className="image-container">
-          <canvas className="image-container__canvas" ref={canvasRef} width="600" height="500" />
-          <img src={image} ref={imageRef} alt="" width="600" height="500" />
-        </div>
-        <input className="file-picker" ref={filePickerRef} type="file" onChange={handleImageChange} />
-      </section>
-    </main>
+    <>
+      <main className="control-board">
+        <section className="intro">
+          <p className="container">
+            This <a href="https://github.com/kvendrik/polaris-ml" target="_blank" rel="noopener noreferrer">experiment</a> allows you to upload a <a href="https://github.com/kvendrik/polaris-ml/tree/master/training-data" target="_blank" rel="noopener noreferrer">wireframe you sketched out</a> on a whiteboard and will tell you what <a href="https://polaris.shopify.com/components" target="_blank" rel="noopener noreferrer">Polaris components</a> you drew and show you a prototype with those components. Don't feel like drawing? <button onClick={handleShowExampleClick}>View an example</button>.
+          </p>
+        </section>
+        <section className="result-status container">
+          <p>
+            <button className="status" onClick={openFilePicker}>{status}</button>
+            <br />
+            <small>On your phone? Take photos in landscape, it tends to work better.</small>
+          </p>
+          <div className="image-container">
+            <canvas className="image-container__canvas" ref={canvasRef} width={canvasSizes.width} height={canvasSizes.height} />
+            <img src={image} ref={imageRef} alt="" width={canvasSizes.width} height={canvasSizes.height} />
+          </div>
+          <input className="file-picker" ref={filePickerRef} type="file" onChange={handleImageChange} />
+        </section>
+      </main>
+      {results.length > 0 && (
+        <>
+          <hr />
+          <Prototype components={componentNames} />
+        </>
+      )}
+    </>
   );
 }
 

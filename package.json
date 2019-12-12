@@ -8,6 +8,7 @@
   "homepage": "http://kvendrik.github.io/polaris-ml",
   "dependencies": {
     "@cloud-annotations/object-detection": "^0.0.8",
+    "@shopify/polaris": "^4.9.1",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
