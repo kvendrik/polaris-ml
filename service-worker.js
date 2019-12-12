@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/polaris-ml/precache-manifest.df8198f0bb5dcfd7868e46451b8b7935.js"
+  "/polaris-ml/precache-manifest.d2cb2d3acbcca78e9a724e4f33a5a7bc.js"
 );
 
 self.addEventListener('message', (event) => {
