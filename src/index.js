@@ -66,7 +66,7 @@ function App() {
       {resultsTable}
       <img className="image" src={image} ref={imageRef} alt="" />
       <p className="subdued">
-        Not sure what to sketch? Have a look at the <a href="https://github.com/kvendrik/polaris-ml/tree/master/training-data" target="_blank" rel="noopener noreferrer">examples</a>.
+        Not sure what to sketch? Have a look at the <a href="https://github.com/kvendrik/polaris-ml/tree/master/training-data" target="_blank" rel="noopener noreferrer">training data (examples)</a>.
       </p>
     </main>
   );
