@@ -6,7 +6,7 @@ import './main.scss';
 const STATUS_MESSAGES = {
   idle: 'Enter a whiteboard sketch using the file picker.',
   loading: 'Loading...',
-  noResults: 'No components detected. Please try again of check the console for the raw output.'
+  noResults: 'No components detected. Please try again or check the console for the raw output.'
 };
 
 function App() {
