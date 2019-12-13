@@ -2,6 +2,8 @@
 
 This experiment creates simple Polaris prototypes from wireframes drawn on a whiteboard. It has many flaws but was fun to work on.
 
+[See it in action](https://kvendrik.github.io/polaris-whiteboarder)
+
 <img src="preview.jpg" width="100%" />
 
 ## How it works
