@@ -1,8 +1,31 @@
-import React, {useCallback, useEffect, useMemo, useState, useRef} from 'react';
+import React, {useCallback, useEffect, useMemo, useReducer, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import imageObjectDetector from './object-detector';
 import Prototype from './Prototype';
 import './main.scss';
+
+let detectOnImageFetch = imageObjectDetector('model');
+
+function reducer(state, {type, payload}) {
+  const {image} = state;
+
+  switch(type) {
+    case 'loading':
+      if (image === payload.image) {
+        return state;
+      }
+      return {loading: true, image: payload.image, results: [], status: 'Loading...'};
+    case 'success':
+      return {loading: false, image, results: payload.results, status: 'Upload a wireframe drawing'};
+    case 'error':
+      return {
+        loading: false,
+        image,
+        results: [],
+        status: 'No components detected. Please try again or check the console for the raw output.'
+      };
+  }
+}
 
 function App() {
   const reader = useMemo(() => new FileReader(), []);
@@ -10,10 +33,12 @@ function App() {
   const filePickerRef = useRef();
   const canvasRef = useRef();
 
-  const [image, setImage] = useState('');
-  const [status, setStatus] = useState('Upload a wireframe drawing');
-  const [results, setResults] = useState([]);
-  const isLoading = status === 'Loading...';
+  const [{loading, image, status, results}, dispatch] = useReducer(reducer, {
+    loading: false,
+    image: '',
+    status: 'Upload a wireframe drawing',
+    results: [],
+  });
 
   const canvasSizes = useMemo(() => {
     const canvasWidth = (window.innerWidth < 600 ? window.innerWidth : 600) - (3*16);
@@ -31,45 +56,43 @@ function App() {
   }, [reader]);
 
   useEffect(
-    () => reader.addEventListener('load', ({target: {result: src}}) => detectOnImagePath(src)),
-    [reader]
+    () => {
+      reader.addEventListener('load', ({target: {result: src}}) => handleSetImage(src));
+      imageRef.current.addEventListener('load', async () => {
+        clearCanvas(canvasRef.current);
+
+        const detectOnImage = await detectOnImageFetch;
+        const results = await detectOnImage(imageRef.current);
+        console.log(results);
+
+        if (results.length > 0) {
+          drawResultBoxes(canvasRef.current, results);
+          dispatch({type: 'success', payload: {results}});
+        } else {
+          dispatch({type: 'error'});
+        }
+      });
+    },
+    [reader, canvasRef, imageRef, detectOnImageFetch]
   );
 
-  const handleShowExampleClick = useCallback(() => detectOnImagePath('wireframe-example.jpg'), []);
+  const handleShowExampleClick = useCallback(() => handleSetImage('wireframe-example.jpg'), []);
 
   const openFilePicker = useCallback(() => {
-    if (isLoading) {
+    if (loading) {
       return;
     }
     filePickerRef.current.click();
-  }, [isLoading]);
+  }, [loading]);
 
-  const detectOnImagePath = useCallback(async (src) => {
-    if (isLoading) {
+  const handleSetImage = useCallback(async (src) => {
+    if (loading) {
       return;
     }
-
-    setImage(src);
-    clearCanvas(canvasRef.current);
-
-    setStatus('Loading...');
-    setResults([]);
-
-    const detectOnImage = await imageObjectDetector('model');
-    const results = await detectOnImage(imageRef.current);
-    console.log(results);
-
-    if (results.length > 0) {
-      setStatus('Upload a wireframe drawing');
-      drawResultBoxes(canvasRef.current, results);
-      setResults(results);
-    } else {
-      setStatus('No components detected. Please try again or check the console for the raw output.');
-    }
-  }, [isLoading, canvasRef, imageRef]);
+    dispatch({type: 'loading', payload: {image: src}});
+  }, [loading]);
 
   const componentNames = results.map(({class: label}) => label);
-  console.log(componentNames);
 
   return (
     <>
