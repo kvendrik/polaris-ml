@@ -1,11 +1,11 @@
 {
-  "name": "polaris-ml",
+  "name": "polaris-whiteboarder",
   "version": "1.0.0",
-  "description": "Create Polaris prototypes using whiteboard sketches",
+  "description": "Create simple Polaris prototypes from whiteboard wireframes",
   "keywords": [],
   "license": "MIT",
   "main": "src/index.js",
-  "homepage": "http://kvendrik.github.io/polaris-ml",
+  "homepage": "http://kvendrik.github.io/polaris-whiteboarder",
   "dependencies": {
     "@cloud-annotations/object-detection": "^0.0.8",
     "@shopify/polaris": "^4.9.1",
