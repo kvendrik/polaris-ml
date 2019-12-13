@@ -55,7 +55,8 @@ function App() {
     setStatus('Loading...');
     setResults([]);
 
-    const results = await detectObjectsInImage(imageRef.current);
+    const detectOnImage = await imageObjectDetector('model');
+    const results = await detectOnImage(imageRef.current);
     console.log(results);
 
     if (results.length > 0) {
@@ -97,11 +98,6 @@ function App() {
       )}
     </>
   );
-}
-
-async function detectObjectsInImage(imageNode) {
-  const detectOnImage = await imageObjectDetector('model');
-  return detectOnImage(imageNode);
 }
 
 function clearCanvas(canvas) {
