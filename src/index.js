@@ -11,7 +11,7 @@ function App() {
   const canvasRef = useRef();
 
   const [image, setImage] = useState('');
-  const [status, setStatus] = useState('Click here to begin');
+  const [status, setStatus] = useState('Upload a wireframe drawing');
   const [results, setResults] = useState([]);
   const isLoading = status === 'Loading...';
 
@@ -59,7 +59,7 @@ function App() {
     console.log(results);
 
     if (results.length > 0) {
-      setStatus('Click here to go again');
+      setStatus('Upload a wireframe drawing');
       drawResultBoxes(canvasRef.current, results);
       setResults(results);
     } else {
@@ -73,16 +73,14 @@ function App() {
   return (
     <>
       <main className="control-board">
-        <section className="intro">
-          <p className="container">
-            This <a href="https://github.com/kvendrik/polaris-ml" target="_blank" rel="noopener noreferrer">experiment</a> allows you to upload a <a href="https://github.com/kvendrik/polaris-ml/tree/master/training-data" target="_blank" rel="noopener noreferrer">wireframe you sketched out</a> on a whiteboard and will tell you what <a href="https://polaris.shopify.com/components" target="_blank" rel="noopener noreferrer">Polaris components</a> you drew and show you a prototype with those components. Don't feel like drawing? <button onClick={handleShowExampleClick}>View an example</button>.
-          </p>
-        </section>
+        <p className="intro container">
+          This <a href="https://github.com/kvendrik/polaris-whiteboarder" target="_blank" rel="noopener noreferrer">experiment</a> creates simple <a href="https://polaris.shopify.com" target="_blank" rel="noopener noreferrer">Polaris</a> prototypes from <a href="https://github.com/kvendrik/polaris-ml/tree/master/training-data" target="_blank" rel="noopener noreferrer">wireframes drawn on a whiteboard</a>.
+        </p>
         <section className="result-status container">
           <p>
             <button className="status" onClick={openFilePicker}>{status}</button>
             <br />
-            <small>On your phone? Take photos in landscape, it tends to work better.</small>
+            <small>Don't feel like drawing? <button onClick={handleShowExampleClick}>View an example</button></small>
           </p>
           <div className="image-container">
             <canvas className="image-container__canvas" ref={canvasRef} width={canvasSizes.width} height={canvasSizes.height} />
