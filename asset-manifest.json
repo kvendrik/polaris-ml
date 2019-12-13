@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/polaris-ml/static/css/main.ae696e1e.chunk.css",
-    "main.js": "/polaris-ml/static/js/main.3454438c.chunk.js",
-    "main.js.map": "/polaris-ml/static/js/main.3454438c.chunk.js.map",
-    "runtime-main.js": "/polaris-ml/static/js/runtime-main.ec14345f.js",
-    "runtime-main.js.map": "/polaris-ml/static/js/runtime-main.ec14345f.js.map",
-    "static/css/2.d1d01eb6.chunk.css": "/polaris-ml/static/css/2.d1d01eb6.chunk.css",
-    "static/js/2.61ff3152.chunk.js": "/polaris-ml/static/js/2.61ff3152.chunk.js",
-    "static/js/2.61ff3152.chunk.js.map": "/polaris-ml/static/js/2.61ff3152.chunk.js.map",
-    "index.html": "/polaris-ml/index.html",
-    "precache-manifest.893bef2dc723662862cb5dea75124e47.js": "/polaris-ml/precache-manifest.893bef2dc723662862cb5dea75124e47.js",
-    "service-worker.js": "/polaris-ml/service-worker.js",
-    "static/css/2.d1d01eb6.chunk.css.map": "/polaris-ml/static/css/2.d1d01eb6.chunk.css.map",
-    "static/css/main.ae696e1e.chunk.css.map": "/polaris-ml/static/css/main.ae696e1e.chunk.css.map",
-    "static/js/2.61ff3152.chunk.js.LICENSE": "/polaris-ml/static/js/2.61ff3152.chunk.js.LICENSE"
+    "main.css": "/polaris-whiteboarder/static/css/main.ae696e1e.chunk.css",
+    "main.js": "/polaris-whiteboarder/static/js/main.48f1655f.chunk.js",
+    "main.js.map": "/polaris-whiteboarder/static/js/main.48f1655f.chunk.js.map",
+    "runtime-main.js": "/polaris-whiteboarder/static/js/runtime-main.14c4f0e8.js",
+    "runtime-main.js.map": "/polaris-whiteboarder/static/js/runtime-main.14c4f0e8.js.map",
+    "static/css/2.d1d01eb6.chunk.css": "/polaris-whiteboarder/static/css/2.d1d01eb6.chunk.css",
+    "static/js/2.6d53721a.chunk.js": "/polaris-whiteboarder/static/js/2.6d53721a.chunk.js",
+    "static/js/2.6d53721a.chunk.js.map": "/polaris-whiteboarder/static/js/2.6d53721a.chunk.js.map",
+    "index.html": "/polaris-whiteboarder/index.html",
+    "precache-manifest.789478cd94247b8dbd93b9f73ae4836c.js": "/polaris-whiteboarder/precache-manifest.789478cd94247b8dbd93b9f73ae4836c.js",
+    "service-worker.js": "/polaris-whiteboarder/service-worker.js",
+    "static/css/2.d1d01eb6.chunk.css.map": "/polaris-whiteboarder/static/css/2.d1d01eb6.chunk.css.map",
+    "static/css/main.ae696e1e.chunk.css.map": "/polaris-whiteboarder/static/css/main.ae696e1e.chunk.css.map",
+    "static/js/2.6d53721a.chunk.js.LICENSE": "/polaris-whiteboarder/static/js/2.6d53721a.chunk.js.LICENSE"
   },
   "entrypoints": [
-    "static/js/runtime-main.ec14345f.js",
+    "static/js/runtime-main.14c4f0e8.js",
     "static/css/2.d1d01eb6.chunk.css",
-    "static/js/2.61ff3152.chunk.js",
+    "static/js/2.6d53721a.chunk.js",
     "static/css/main.ae696e1e.chunk.css",
-    "static/js/main.3454438c.chunk.js"
+    "static/js/main.48f1655f.chunk.js"
   ]
 }
