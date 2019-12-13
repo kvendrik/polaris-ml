@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "36c641bf3abab3f52fbbc39b99bef57c",
+    "revision": "b2836aaca6b83f8ccd14cd5a3be6608d",
     "url": "/polaris-whiteboarder/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/polaris-whiteboarder/static/css/2.d1d01eb6.chunk.css"
   },
   {
-    "revision": "18f51ad1991f7c70130c",
-    "url": "/polaris-whiteboarder/static/css/main.ae696e1e.chunk.css"
+    "revision": "e5c5bbd16404fe307a5b",
+    "url": "/polaris-whiteboarder/static/css/main.6fa3b735.chunk.css"
   },
   {
     "revision": "4ad73162707f6d410b9d",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/polaris-whiteboarder/static/js/2.6d53721a.chunk.js.LICENSE"
   },
   {
-    "revision": "18f51ad1991f7c70130c",
-    "url": "/polaris-whiteboarder/static/js/main.48f1655f.chunk.js"
+    "revision": "e5c5bbd16404fe307a5b",
+    "url": "/polaris-whiteboarder/static/js/main.24faa66e.chunk.js"
   },
   {
     "revision": "b721bf09f3a292df81d2",
