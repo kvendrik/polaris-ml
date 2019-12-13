@@ -7,15 +7,15 @@
   "main": "src/index.js",
   "homepage": "http://kvendrik.github.io/polaris-whiteboarder",
   "dependencies": {
-    "@cloud-annotations/object-detection": "^0.0.8",
     "@shopify/polaris": "^4.9.1",
-    "node-sass": "^4.13.0",
+    "@tensorflow/tfjs": "^1.4.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "^3.3.0"
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "gh-pages": "^2.1.1"
+    "gh-pages": "^2.1.1",
+    "node-sass": "^4.13.0",
+    "react-scripts": "^3.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

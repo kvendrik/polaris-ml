@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useState, useRef} from 'react';
 import ReactDOM from 'react-dom';
-import objectDetector from '@cloud-annotations/object-detection';
+import imageObjectDetector from './object-detector';
 import Prototype from './Prototype';
 import './main.scss';
 
@@ -100,8 +100,8 @@ function App() {
 }
 
 async function detectObjectsInImage(imageNode) {
-  const model = await objectDetector.load('model');
-  return model.detect(imageNode);
+  const detectOnImage = await imageObjectDetector('model');
+  return detectOnImage(imageNode);
 }
 
 function clearCanvas(canvas) {
@@ -122,13 +122,13 @@ function drawResultBoxes(canvas, results) {
   ctx.lineWidth = 4;
   ctx.fillStyle = '#2da15f';
 
-  for (const {class: label, score, bbox: [x, y, width, height]} of results) {
+  for (const {class: label, score, boundingBox: {x, y, width, height}} of results) {
     ctx.strokeRect(x, y, width, height);
     const textWidth = ctx.measureText(constructLabel(label, score)).width;
     ctx.fillRect(x, y, textWidth + 4, textHeight + 4);
   }
 
-  for (const {class: label, score, bbox: [x, y]} of results) {
+  for (const {class: label, score, boundingBox: {x, y}} of results) {
     ctx.fillStyle = '#000000';
     ctx.fillText(constructLabel(label, score), x, y);
   }
